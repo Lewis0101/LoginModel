@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         mInputAccount.setOnEditorActionListener(mOnEditorActionListener);
     }
 
-    @OnClick({R.id.clear_account, R.id.clear_password, R.id.user_sign_up, R.id.login,R.id.input_toggle})
+    @OnClick({R.id.clear_account, R.id.clear_password, R.id.user_sign_up, R.id.login, R.id.input_toggle})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.clear_account:
@@ -92,10 +92,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     //    设置监听
-    private TextView.OnEditorActionListener mOnEditorActionListener = (v,actionId,event) -> {
-        if (actionId == EditorInfo.IME_ACTION_GO){
+    private TextView.OnEditorActionListener mOnEditorActionListener = (v, actionId, event) -> {
+        //软键盘上的回车也能登录（效果与Button一致）
+        if (actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
             login();
             return true;
         }
@@ -123,8 +123,10 @@ public class LoginActivity extends AppCompatActivity {
             boolean emptyAccount = TextUtils.isEmpty(account);
             boolean emptyPassword = TextUtils.isEmpty(password);
 
-            mClearAccount.setVisibility(emptyAccount? View.GONE:View.VISIBLE);
-            mClearPassword.setVisibility(emptyAccount? View.GONE:View.VISIBLE);
+//            设置ImageView的状态根据EditText的变化而出现
+            mClearAccount.setVisibility(emptyAccount ? View.GONE : View.VISIBLE);
+            mClearPassword.setVisibility(emptyAccount ? View.GONE : View.VISIBLE);
+
 //            设置按钮是否可以点击
             mLogin.setEnabled(!(emptyAccount || emptyPassword));
         }

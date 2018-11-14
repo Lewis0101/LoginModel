@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LoginModel</string>
+
+    <string-array name="city">
+        <item>重庆</item>
+        <item>北京</item>
+        <item>上海</item>
+        <item>广东</item>
+        <item>四川</item>
+        <item>广西</item>
+        <item>云南</item>
+        <item>安徽</item>
+
+    </string-array>
 </resources>

@@ -1,12 +1,15 @@
 package com.example.user.loginmodel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author : LiuYang
@@ -15,8 +18,13 @@ import butterknife.ButterKnife;
 
 public class Sign_upActivity extends AppCompatActivity {
 
-    @BindView(R.id.web_view)
-    WebView mWebView;
+
+    @BindView(R.id.setting_account)
+    EditText mSettingAccount;
+    @BindView(R.id.setting_password)
+    EditText mSettingPassword;
+    @BindView(R.id.sign_up)
+    Button mSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +32,16 @@ public class Sign_upActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         ButterKnife.bind(this);
 
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new WebViewClient());
-        mWebView.loadUrl("https://www.uplabs.com/posts/checkout-confirmation-page");
+
+    }
+
+    @OnClick(R.id.sign_up)
+    public void onViewClicked() {
+        if (mSettingAccount.length() == 0 || mSettingPassword.length() == 0){
+            Toast.makeText(this,"账号或者密码不能为空",Toast.LENGTH_SHORT).show();
+        }else {
+            startActivity(new Intent(this,MainActivity.class));
+        }
 
     }
 }
